@@ -22,3 +22,15 @@ after_success:
   - docker push suriyak8s/multi-nginx
   - docker push suriyak8s/multi-server
   - docker push suriyak8s/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: us-east-2
+  app: multi-docker
+  env: Multidocker-env
+  bucket_name: elasticbeanstalk-us-east-2-356780356339
+  bucket_path: docker-multi
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
